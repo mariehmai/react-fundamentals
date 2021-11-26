@@ -29,8 +29,12 @@
     // 💰 The example in the markdown file should be a good hint for you.
     const element = React.createElement('div', {
       className: 'container',
-      children: 'Hello World',
+      children: [
+        React.createElement('span', null, 'Hello'),
+        React.createElement('span', null, 'World'),
+      ],
     })
+
     ReactDOM.render(element, rootElement)
   </script>
 </body>
