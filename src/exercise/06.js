@@ -4,18 +4,15 @@
 import * as React from 'react'
 
 function UsernameForm({onSubmitUsername}) {
-  const inputRef = React.useRef()
-  const [errorMessage, setErrorMessage] = React.useState(null)
+  const [username, setUsername] = React.useState('')
 
   function handleSubmit(event) {
     event.preventDefault()
-    onSubmitUsername(inputRef.current.value)
+    onSubmitUsername(username)
   }
 
   function handleChange(event) {
-    const isInputValid = event.target.value === event.target.value.toLowerCase()
-
-    setErrorMessage(isInputValid ? null : 'Nop nop nop!')
+    setUsername(event.target.value.toLowerCase())
   }
 
   return (
@@ -23,16 +20,13 @@ function UsernameForm({onSubmitUsername}) {
       <div>
         <label htmlFor="username">Username:</label>
         <input
-          ref={inputRef}
           id="username"
           type="text"
+          value={username}
           onChange={handleChange}
         />
       </div>
-      <div style={{color: 'red'}}>{errorMessage}</div>
-      <button type="submit" disabled={!!errorMessage}>
-        Submit
-      </button>
+      <button type="submit">Submit</button>
     </form>
   )
 }
